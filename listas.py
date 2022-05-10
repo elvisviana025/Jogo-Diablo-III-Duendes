@@ -5,40 +5,40 @@ menor = 1
 
 
 guerreiro = {"nome": "guerreiro",
-             "poder": "força",
+             "vantagem": "força",
              "força": maior,
              "inteligência": menor,
              "agilidade": medio,
              "magia": menor}
 
 feiticeiro = {"nome": "feiticeiro",
-              "poder": "magia",
-              "força": maior,
+              "vantagem": "magia",
+              "força": medio,
               "inteligência": medio,
               "agilidade": menor,
               "magia": maior}
 
 cacador = {"nome": "caçador",
-           "poder": "agilidade",
-            "força": maior,
+           "vantagem": "agilidade",
+            "força": medio,
             "inteligência": menor,
             "agilidade": maior,
             "magia": menor}
 
 necromante = {"nome": "necromante",
-              "poder": "inteligência",
+              "vantagem": "inteligência",
               "força": menor,
               "inteligência": maior,
               "agilidade": menor,
               "magia": maior}
 
 # Dicionarios inimiogs
-morcegos = {"nome": "morcegos", "fraqueza": "agilidade"}
+morcegos = {"nome": "revoada de morcegos", "fraqueza": "agilidade", "resistência": 'magia'}
 
-ogro = {"nome": "ogro", "fraqueza": "inteligência"}
+ogro = {"nome": "ogro", "fraqueza": "inteligência", "resistência": 'força'}
 
-duende = {"nome": "duende", "fraqueza": "força"}
+duende = {"nome": "duende", "fraqueza": "força", "resistência": 'inteligência'}
 
-fantasma = {"nome": "fantasma", "fraqueza": "magia"}
+fantasma = {"nome": "fantasma", "fraqueza": "magia", "resistência": 'agilidade'}
 
 listaInimigos = [morcegos, ogro, duende, fantasma]
