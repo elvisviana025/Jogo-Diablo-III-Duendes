@@ -1,5 +1,5 @@
 # Dicionários classes
-maior = 4
+maior = 3
 medio = 2
 menor = 1
 
@@ -21,7 +21,7 @@ feiticeiro = {"nome": "feiticeiro",
 cacador = {"nome": "caçador",
            "vantagem": "agilidade",
             "força": medio,
-            "inteligência": menor,
+            "inteligência": medio,
             "agilidade": maior,
             "magia": menor}
 
@@ -29,8 +29,8 @@ necromante = {"nome": "necromante",
               "vantagem": "inteligência",
               "força": menor,
               "inteligência": maior,
-              "agilidade": menor,
-              "magia": maior}
+              "agilidade": medio,
+              "magia": medio}
 
 # Dicionarios inimiogs
 morcegos = {"nome": "revoada de morcegos", "fraqueza": "agilidade", "resistência": 'magia'}

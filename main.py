@@ -1,43 +1,43 @@
 # Jogo 1
-from random import randint
-import listas
 import funcoes_base
 import funcoes_jogo
 
 # 1. Título
-funcoes_base.espaco()
 funcoes_base.titulo("Jogo")
-funcoes_base.espaco()
 
 # 2. Escolher personagem
 persona = funcoes_jogo.escolher_classe()
+funcoes_jogo.imprimir_personagem('♣ Você escolheu a classe', persona)
 
-print(f'Você escolheu a classe {persona["nome"].title()}.')
-for k, v in persona.items():
-    if not k == 'nome':
-        print(f'{k.capitalize()}: {v} | ', end='')
-print()
+sequencia = 0
+while True:
+    # 3. Batalhar
+    # 3.1 Inimigo
+    inimigo = funcoes_jogo.sortear_inimigo()
+    funcoes_jogo.imprimir_inimigo(inimigo)
 
-funcoes_base.espaco()
+    # 3.2 Dados
+    escolhaAgir = funcoes_jogo.escolher_acao()
+    ponto_acao = funcoes_jogo.somar_ponto_acao(persona, escolhaAgir)
 
-# 3. Batalhar
-# 3.1 Inimigo
-inimigo = funcoes_jogo.sortear_inimigo()
-print(f'O inimigo é {inimigo["nome"].title()}.')
-for k, v in inimigo.items():
-    if not k == 'nome':
-        print(f'{k.capitalize()}: {v} | ', end='')
-print()
+    ataque = funcoes_jogo.jogar_dado_ataque(ponto_acao)
 
-# 3.2 Dados
-escolhaAgir = funcoes_jogo.escolher_acao()
-ponto_acao = funcoes_jogo.somar_ponto_acao(persona, escolhaAgir)
+    ataqueVantagem = funcoes_jogo.calcular_vantagens(escolhaAgir, ataque, inimigo)
+    ataqueFinal = funcoes_jogo.calcular_desvantagens(ataqueVantagem, persona, inimigo)
 
-ataque = funcoes_jogo.jogar_dado_ataque(ponto_acao)
-print(f'Valor de ataque: {ataque}.')
+    print(f'O ataque do seu personagem {persona["nome"]} foi {ataqueFinal}.')
 
-ataqueFinal = funcoes_jogo.calcular_vantagens(escolhaAgir, ataque, persona, inimigo)
-print(f'O ataque do seu personagem {persona["nome"]} foi {ataqueFinal}.')
+    # 3.3 Desfecho
+    resultado = funcoes_jogo.calcular_resultado(ataqueFinal)
 
-# 3.3 Desfecho
-funcoes_jogo.calcular_resultado(ataqueFinal)
+    if resultado == False:
+        break
+
+    sequencia = sequencia + 1
+    continuar = funcoes_jogo.escolha_continuar()
+    if continuar == False:
+        break
+
+    funcoes_jogo.imprimir_personagem(f'♣ Sequência de {sequencia} vitória(s) com', persona)
+
+print(f'Você derrotou uma sequência de {sequencia} inimigos!')
