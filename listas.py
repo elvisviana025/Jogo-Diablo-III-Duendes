@@ -25,7 +25,7 @@ cacador = {"nome": "caçador",
             "agilidade": maior,
             "magia": menor}
 
-necromante = {"nome": "necromante",
+monge = {"nome": "monge",
               "vantagem": "inteligência",
               "força": menor,
               "inteligência": maior,
@@ -34,11 +34,24 @@ necromante = {"nome": "necromante",
 
 # Dicionarios inimiogs
 morcegos = {"nome": "revoada de morcegos", "fraqueza": "agilidade", "resistência": 'magia'}
+serpente = {"nome": "serpente enfeitiçada", "fraqueza": "agilidade", "resistência": 'magia'}
 
-ogro = {"nome": "ogro", "fraqueza": "inteligência", "resistência": 'força'}
+diabrete_g = {"nome": "diabrete guerreiro", "fraqueza": "inteligência", "resistência": 'força'}
+orc = {"nome": "orc", "fraqueza": "inteligência", "resistência": 'força'}
 
-duende = {"nome": "duende", "fraqueza": "força", "resistência": 'inteligência'}
+diabrete_s = {"nome": "diabrete sagaz", "fraqueza": "força", "resistência": 'inteligência'}
+duende = {"nome": "duende", "fraqueza": "nenhuma", "resistência": 'inteligência'}
 
 fantasma = {"nome": "fantasma", "fraqueza": "magia", "resistência": 'agilidade'}
+fantasma_ceifador = {"nome": "fantasma ceifador", "fraqueza": "nenhuma", "resistência": 'agilidade'}
 
-listaInimigos = [morcegos, ogro, duende, fantasma]
+listaInimigos = [morcegos, serpente, orc, diabrete_g, duende, diabrete_s, fantasma, fantasma_ceifador]
+
+# Dicionário Chefes
+
+fada = {"nome": "fada das trevas", "fraqueza": "nenhuma", "resistência": 'magia'}
+anjo = {"nome": "anjo renegado", "fraqueza": "nenhuma", "resistência": 'força'}
+genio = {"nome": "gênio corrompido", "fraqueza": "nenhuma", "resistência": 'inteligência'}
+espirito = {"nome": "espírito das legiões", "fraqueza": "nenhuma", "resistência": 'agilidade'}
+
+listaChefes = [fada, anjo, genio, espirito]
