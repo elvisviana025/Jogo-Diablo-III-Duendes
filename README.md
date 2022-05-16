@@ -22,7 +22,7 @@ Veja a seguir as principais regras:
 
 * Praticar Python
 * Praticar lógica de programação (estruturas condicionais e de repetição)
-* Praticar 
+* Praticar uso de funções e importação de arquivos
 
 ## ⚙ Como utilizar
 
