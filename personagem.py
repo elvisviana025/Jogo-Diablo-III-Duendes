@@ -65,21 +65,19 @@ class Personagem():
 
 
     def __str__(self):
-        return f'{self._nome.title()} ' \
-               f'| Vantagem: {self._vantagem.title()} ' \
-               f'| Força: {self._forca} ' \
-               f'| Inteligência: {self._inteligencia} ' \
-               f'| Agilidade: {self._agilidade} ' \
-               f'| Magia: {self._magia} '
+        return f'♣ {self._nome.title()} ' \
+               f'| [1] Força: {self._forca} ' \
+               f'| [2] Inteligência: {self._inteligencia} ' \
+               f'| [3] Agilidade: {self._agilidade} ' \
+               f'| [4] Magia: {self._magia} '
 
     def imprimir_classe_formatada(self):
         print( f'{self._nome.title():10} '
                f'| Vantagem: {self._vantagem.title():12} '
-               f'| Força: {self._forca} '
-               f'| Inteligência: {self._inteligencia} '
-               f'| Agilidade: {self._agilidade} '
-               f'| Magia: {self._magia} ')
-
+               f'| [1] Força: {self._forca} '
+               f'| [2] Inteligência: {self._inteligencia} '
+               f'| [3] Agilidade: {self._agilidade} '
+               f'| [4] Magia: {self._magia} ')
 
     def escolher_acao(self):
         escolhaAgir = ''
@@ -97,4 +95,5 @@ class Personagem():
     def jogar_dado(self):
         input('Jogue o dado de 1 a 6 [ENTER]: ')
         dado = randint(1, 6)
+        print(f'• Pontos de dado = {dado}')
         return dado
