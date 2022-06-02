@@ -2,19 +2,19 @@ from inimigo import Inimigo_Comum, Inimigo_Chefe
 from lista_de_objetos import Lista_de_objetos
 
 # INIMIGOS COMUNS
-voador_agil = Inimigo_Comum(["revoada de morcegos", "gárgula enfeitiçada", "revoada de vespas", "revoada de morcegos"], "agilidade", 'magia')
+voador_agil = Inimigo_Comum(["revoada de morcegos", "gárgula enfeitiçada", "revoada de vespas", "diabretes alados"], "agilidade", 'magia')
 rastejante_agil = Inimigo_Comum(["serpente enfeitiçada", "ratazana enfeitiçada", "verme da areia", "aranha enfeitiçada"], "agilidade", 'magia')
 
-diabrete_g = Inimigo_Comum(["diabrete guerreiro", "diabrete guerreiro", "diabrete guerreiro", "diabrete guerreiro"], "inteligência", 'força')
+guerreiro = Inimigo_Comum(["diabrete guerreiro", "guarda possuído", "diabrete guerreiro", "troll guerreiro"], "inteligência", 'força')
 orc = Inimigo_Comum(["orc da floresta", "orc pilhador", "orc das dunas", "orc das cavernas"], "inteligência", 'força')
 
-diabrete_s = Inimigo_Comum(["diabrete sagaz", "diabrete sagaz", "diabrete sagaz", "diabrete sagaz"], "força", 'inteligência')
+trapaceiro = Inimigo_Comum(["troll da ponte", "diabrete sagaz", "múmia renascida", "diabrete sagaz"], "força", 'inteligência')
 duende = Inimigo_Comum(["duende", "duende", "duende", "duende"], " - ", 'inteligência')
 
 fantasma = Inimigo_Comum(["fantama do pântano", "fantasma do cavaleiro", "fantasma ghoul", "fantasma do abismo"], "magia", 'agilidade')
 fantasma_ceifador = Inimigo_Comum(["fantasma ceifador", "fantasma ceifador", "fantasma ceifador", "fantasma ceifador"], " - ", 'agilidade')
 
-lista_inimigos_comuns = [voador_agil, rastejante_agil, orc, diabrete_g, duende, diabrete_s, fantasma, fantasma_ceifador]
+lista_inimigos_comuns = [voador_agil, rastejante_agil, orc, guerreiro, duende, trapaceiro, fantasma, fantasma_ceifador]
 objeto_lista_de_inimigos_comuns = Lista_de_objetos('Lista de Inimigos Comuns', lista_inimigos_comuns)
 
 # INIMIGOS CHEFES

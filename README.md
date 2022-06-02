@@ -13,6 +13,7 @@ Este pequeno jogo, inspirado no jogo "Diablo III", consiste em um RPG jogável n
 Veja a seguir as principais regras:
 
 * Objetivo: ache e capture o maior número de duendes.
+* Você irá enfrentar até 21 inimigos na sua busca.
 * Você ganha a batalha se tiver 5 ou mais pontos de ataque.
 * Você não pode repetir uma ação em duas batalhas seguidas.
 * Fraquezas e resistências do inimigo: + 1 ou - 1 ponto de ataque.
@@ -22,7 +23,8 @@ Veja a seguir as principais regras:
 
 * Praticar Python
 * Praticar lógica de programação (estruturas condicionais e de repetição)
-* Praticar uso de funções e importação de arquivos
+* Praticar uso de funções
+* Praticar o paradigma de orientação à objetos
 
 ## ⚙ Como utilizar
 

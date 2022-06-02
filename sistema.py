@@ -1,5 +1,6 @@
 from random import randint
 from time import sleep
+import copy
 
 import lista_classes
 import lista_inimigos
@@ -22,7 +23,7 @@ class Sistema():
         self.__espaco()
 
     def exibir_menu(self):
-        while True: # MANTER COMENTADO PARA TESTE
+        while True:
             escolha = int(input('Menu:\n[1] Jogar [2] Regras [3] Classes [4] Sair\n → '))
             if escolha == 1:
                 self.jogar()
@@ -35,6 +36,7 @@ class Sistema():
 
     def __imprimir_regras(self):
         print('→ Objetivo: ache e capture o maior número de duendes.\n'
+              '→ Você irá enfrentar até 21 inimigos na sua busca.'
               '→ Você ganha a batalha se tiver 5 ou mais pontos de ataque.\n'
               '→ Você não pode repetir uma ação em duas batalhas seguidas.\n'
               '→ Fraquezas e resistências do inimigo: + 1 ou - 1 ponto de ataque.')
@@ -47,7 +49,7 @@ class Sistema():
             classe.imprimir_classe_formatada()
 
     def escolher_caminho(self):
-        caminho = int(input('Escolha um caminho:\n[1] Floresta [2] Cidadela [3] Deserto [4] Caminho montanhoso\n → '))
+        caminho = int(input('Escolha um caminho:\n[1] Floresta [2] Cidadela [3] Deserto [4] Caminho Montanhoso\n → '))
         if caminho == 1:
             print(f'• Floresta: você adentra um caminho de árvores, pântanos, grutas e clareiras.')
             return 0
@@ -58,7 +60,7 @@ class Sistema():
             print(f'• Deserto: você adentra um caminho de dunas, povoados, caravanas e ruínas.')
             return 2
         if caminho == 4:
-            print(f'• Caminho montanhoso: você adentra um caminho de cavernas, desfiladeiros e rochas.')
+            print(f'• Caminho Montanhoso: você adentra um caminho de cavernas, desfiladeiros e rochas.')
             return 3
 
     def escolher_classe(self):
@@ -66,13 +68,13 @@ class Sistema():
         escolha = int(input('Escolha uma classe:\n[1] Guerreiro [2] Feiticeiro [3] Caçador [4] Monge\n → '))
         personagem = ''
         if escolha == 1:
-            personagem = lista_classes.objeto_lista_de_classe.__getitem__(0)
+            personagem = copy.deepcopy(lista_classes.objeto_lista_de_classe.__getitem__(0))
         elif escolha == 2:
-            personagem = lista_classes.objeto_lista_de_classe.__getitem__(1)
+            personagem = copy.deepcopy(lista_classes.objeto_lista_de_classe.__getitem__(1))
         elif escolha == 3:
-            personagem = lista_classes.objeto_lista_de_classe.__getitem__(2)
+            personagem = copy.deepcopy(lista_classes.objeto_lista_de_classe.__getitem__(2))
         elif escolha == 4:
-            personagem = lista_classes.objeto_lista_de_classe.__getitem__(3)
+            personagem = copy.deepcopy(lista_classes.objeto_lista_de_classe.__getitem__(3))
         print(f'Você escolheu a classe {personagem.nome.title()}.')
         print(personagem)
         self.__espaco()
@@ -147,12 +149,14 @@ class Sistema():
             return True
 
     def zerar_variaveis_no_final(self, personagem):
+
         personagem.sequencia = 0
         personagem.duendes_capturados = 0
         personagem.ultima_escolha = ''
 
+
     def imprimir_resultados_das_batalhas(self, personagem):
-        print(f'Sequência: {personagem.sequencia} vitória(s) | Duendes capturados: {personagem.duendes_capturados}')
+        print(f'Sequência: {personagem.sequencia}/21 vitória(s) | Duendes capturados: {personagem.duendes_capturados}')
         self.__pausa()
         print(personagem)
         self.__espaco()
@@ -191,7 +195,7 @@ class Sistema():
                 elif numero_sorteado == 3:
                     print(f'• O inimigo {inimigo.retornar_nome(caminho)} ficou atordoado após seu ataque de {personagem.ultima_escolha}.')
         elif resultado_final ==  "vitória_destruição":
-            if inimigo.retornar_nome(caminho) == "duende":
+            if inimigo.retornar_nome(caminho) == "Duende":
                 print(f'• Você capturou o Duende com um ataque de {personagem.ultima_escolha}.')
             else:
                 if numero_sorteado == 1:
@@ -201,8 +205,16 @@ class Sistema():
                 elif numero_sorteado == 3:
                     print(f'• O inimigo {inimigo.retornar_nome(caminho)} foi destruído após seu ataque surpresa de {personagem.ultima_escolha}.')
 
+    def __terminar_aventura(self, personagem, caminho):
+        cenarios = ['na Floresta', 'na Cidadela', 'no Deserto', 'no Caminho Montanhoso']
+        if personagem.sequencia == 21:
+            print(f'\nParabéns! Você concluiu as 21 batalhas dessa aventura {cenarios[caminho]}!')
+            return True
+        else:
+            return False
+
     def jogar(self):
-        caminho = self.escolher_caminho()
+        caminho = self.escolher_caminho() # ESCOLHA O CAMINHO A PERCORRER
         self.__pausa()
         personagem = self.escolher_classe()  # ESCOLHA PERSONAGEM
         while True:
@@ -234,6 +246,9 @@ class Sistema():
                 self.__pausa()
                 inimigo.agir_na_derrota(personagem, resultado_final, caminho)  # ATRIBUIR ITEM OU MALDIÇÃO DEPENDENDO DO INIMIGO
 
+                terminar_aventura = self.__terminar_aventura(personagem, caminho)
+                if terminar_aventura == True:
+                    break
 
                 continuar = self.continuar_batalhas() # OPÇÃO DE CONTINAR BATALHAS OU FINALIZAR1
                 self.__pausa()
@@ -251,7 +266,6 @@ class Sistema():
         self.imprimir_resultados_finais(personagem)
         self.zerar_variaveis_no_final(personagem)
         self.__espaco()
-
 
 
 ## INTRODUÇÃO ---------------------------------------
