@@ -26,7 +26,7 @@ class Sistema():
         while True:
             escolha = int(input('Menu:\n[1] Jogar [2] Regras [3] Classes [4] Sair\n → '))
             if escolha == 1:
-                self.jogar()
+                self.__jogar()
             elif escolha == 2:
                 self.__imprimir_regras()
             elif escolha == 3:
@@ -48,7 +48,7 @@ class Sistema():
         for classe in lista_classes.lista_de_classes:
             classe.imprimir_classe_formatada()
 
-    def escolher_caminho(self):
+    def __escolher_caminho(self):
         caminho = int(input('Escolha um caminho:\n[1] Floresta [2] Cidadela [3] Deserto [4] Caminho Montanhoso\n → '))
         if caminho == 1:
             print(f'• Floresta: você adentra um caminho de árvores, pântanos, grutas e clareiras.')
@@ -63,7 +63,7 @@ class Sistema():
             print(f'• Caminho Montanhoso: você adentra um caminho de cavernas, desfiladeiros e rochas.')
             return 3
 
-    def escolher_classe(self):
+    def __escolher_classe(self):
         self.__espaco()
         escolha = int(input('Escolha uma classe:\n[1] Guerreiro [2] Feiticeiro [3] Caçador [4] Monge\n → '))
         personagem = ''
@@ -80,7 +80,7 @@ class Sistema():
         self.__espaco()
         return personagem
 
-    def sortear_inimigo(self, personagem, caminho):
+    def __sortear_inimigo(self, personagem, caminho):
         if personagem.sequencia % 5 == 0 and personagem.sequencia != 0:
             inimigo_chefe_sorteado = lista_inimigos.objeto_lista_de_inimigos_chefes.sortear_objeto()
             print(f'Chefão! O inimigo é {inimigo_chefe_sorteado.retornar_nome(caminho)}.')
@@ -94,7 +94,7 @@ class Sistema():
             self.__espaco()
             return inimigo_comum_sorteado
 
-    def validar_acao(self, acao_escolhida, personagem):
+    def __validar_acao(self, acao_escolhida, personagem):
         while acao_escolhida == personagem.ultima_escolha:
             print(f'* Sua habilidade está se recuperando. Escolha outra.')
             self.__pausa()
@@ -103,7 +103,7 @@ class Sistema():
         print(f'• O {personagem.nome.title()} agiu com {acao_escolhida}.')
         return acao_escolhida
 
-    def calcular_ponto_de_acao(self, personagem, acao_escolhida):
+    def __calcular_ponto_de_acao(self, personagem, acao_escolhida):
         ponto_acao = 0
         if acao_escolhida == "força":
             ponto_acao = personagem.forca
@@ -116,13 +116,13 @@ class Sistema():
         print(f'• Pontos de ação = {ponto_acao}')
         return ponto_acao
 
-    def calcular_pontuacao_final(self, ponto_acao, ponto_dado, ponto_modificador):
+    def __calcular_pontuacao_final(self, ponto_acao, ponto_dado, ponto_modificador):
         ponto_resultado_final = ponto_acao + ponto_dado + ponto_modificador
         print(f'Pontuação final = {ponto_resultado_final}')
         self.__espaco()
         return ponto_resultado_final
 
-    def calcular_resultado_final(self, pontuacao_final):
+    def __calcular_resultado_final(self, pontuacao_final):
         resultado_final = ''
         if pontuacao_final <= 2:
             resultado_final = 'derrota_destruição'
@@ -134,12 +134,14 @@ class Sistema():
             resultado_final = 'vitória_destruição'
         return resultado_final
 
-    def contabilizar_vitoria(self, personagem, inimigo, caminho):
+    def __contabilizar_vitoria(self, personagem, inimigo, caminho, resultado_final):
         personagem.sequencia += 1
         if inimigo.retornar_nome(caminho) == 'Duende':
             personagem.duendes_capturados += 1
+        if resultado_final == 'vitória_destruição' and inimigo.retornar_nome(caminho) != 'Duende':
+            personagem.inimigos_destruidos += 1
 
-    def continuar_batalhas(self):
+    def __continuar_batalhas(self):
         escolha = int(input('Continuar? [1] Sim [2] Não\n→ '))
         while escolha > 2 or escolha < 1:
             escolha = int(input('→ '))
@@ -148,23 +150,18 @@ class Sistema():
         else:
             return True
 
-    def zerar_variaveis_no_final(self, personagem):
-
-        personagem.sequencia = 0
-        personagem.duendes_capturados = 0
-        personagem.ultima_escolha = ''
-
-
-    def imprimir_resultados_das_batalhas(self, personagem):
+    def __imprimir_resultados_das_batalhas(self, personagem):
         print(f'Sequência: {personagem.sequencia}/21 vitória(s) | Duendes capturados: {personagem.duendes_capturados}')
         self.__pausa()
         print(personagem)
         self.__espaco()
 
-    def imprimir_resultados_finais(self, personagem):
+    def __imprimir_resultados_finais(self, personagem):
         print('Fim de jogo!')
         self.__pausa()
-        print(f'Sequência: {personagem.sequencia} batalhas vencidas | Duendes capturados: {personagem.duendes_capturados}')
+        print(f'Sequência: {personagem.sequencia}/21 batalhas vencidas'
+              f' | Duendes capturados: {personagem.duendes_capturados}'
+              f' | Inimigos destruídos: {personagem.inimigos_destruidos}' )
         self.__pausa()
 
     def __imprimir_texto_batalha(self, personagem, inimigo, resultado_final, caminho):
@@ -213,36 +210,36 @@ class Sistema():
         else:
             return False
 
-    def jogar(self):
-        caminho = self.escolher_caminho() # ESCOLHA O CAMINHO A PERCORRER
+    def __jogar(self):
+        caminho = self.__escolher_caminho() # ESCOLHA O CAMINHO A PERCORRER
         self.__pausa()
-        personagem = self.escolher_classe()  # ESCOLHA PERSONAGEM
+        personagem = self.__escolher_classe()  # ESCOLHA PERSONAGEM
         while True:
             self.__pausa()
-            inimigo = self.sortear_inimigo(personagem, caminho)  # SORTEIO INIMIGO
+            inimigo = self.__sortear_inimigo(personagem, caminho)  # SORTEIO INIMIGO
             self.__pausa()
 
             ## BATALHA ---------------------------------------
             acao_escolhida = personagem.escolher_acao()  # ESCOLHER AÇÃO
-            acao_escolhida_validada = self.validar_acao(acao_escolhida, personagem)  # VALIDAR AÇÃO
+            acao_escolhida_validada = self.__validar_acao(acao_escolhida, personagem)  # VALIDAR AÇÃO
             self.__pausa()
-            ponto_acao = self.calcular_ponto_de_acao(personagem, acao_escolhida_validada)  # CALCULAR PONTO DE AÇÃO
+            ponto_acao = self.__calcular_ponto_de_acao(personagem, acao_escolhida_validada)  # CALCULAR PONTO DE AÇÃO
             self.__pausa()
             ponto_dado = personagem.jogar_dado()  # JOGAR DADO
             self.__pausa()
             ponto_modificador = inimigo.calcular_vantagem_desvantagem(acao_escolhida_validada)  # CALCULAR VANTAGENS E DESVANTAGENS
-            pontuacao_final = self.calcular_pontuacao_final(ponto_acao, ponto_dado, ponto_modificador)  # CALCULAR PONTUAÇÃO FINAL
+            pontuacao_final = self.__calcular_pontuacao_final(ponto_acao, ponto_dado, ponto_modificador)  # CALCULAR PONTUAÇÃO FINAL
             self.__pausa()
 
 
             ## DESFECHO ---------------------------------------
-            resultado_final = self.calcular_resultado_final(pontuacao_final)
+            resultado_final = self.__calcular_resultado_final(pontuacao_final)
 
             ## DESFECHO GANHOU ---------------------------------------
             if resultado_final == 'vitória' or resultado_final == 'vitória_destruição':
                 print('Vitória!')
                 self.__imprimir_texto_batalha(personagem, inimigo, resultado_final, caminho) # ESCREVE TEXTO BATALHA
-                self.contabilizar_vitoria(personagem, inimigo, caminho)  # CONTAR SEQUENCIA E EVENTUAL DUENDE CAPTURADO
+                self.__contabilizar_vitoria(personagem, inimigo, caminho, resultado_final)  # CONTAR SEQUENCIA E EVENTUAL DUENDE CAPTURADO
                 self.__pausa()
                 inimigo.agir_na_derrota(personagem, resultado_final, caminho)  # ATRIBUIR ITEM OU MALDIÇÃO DEPENDENDO DO INIMIGO
 
@@ -250,12 +247,12 @@ class Sistema():
                 if terminar_aventura == True:
                     break
 
-                continuar = self.continuar_batalhas() # OPÇÃO DE CONTINAR BATALHAS OU FINALIZAR1
+                continuar = self.__continuar_batalhas() # OPÇÃO DE CONTINAR BATALHAS OU FINALIZAR1
                 self.__pausa()
                 print('')
                 if continuar == False:
                     break
-                self.imprimir_resultados_das_batalhas(personagem)
+                self.__imprimir_resultados_das_batalhas(personagem)
 
             ## DESFECHO PERDEU ---------------------------------------
             else:
@@ -263,8 +260,7 @@ class Sistema():
                 self.__imprimir_texto_batalha(personagem, inimigo, resultado_final, caminho) # ESCREVE TEXTO BATALHA
                 self.__pausa()
                 break
-        self.imprimir_resultados_finais(personagem)
-        self.zerar_variaveis_no_final(personagem)
+        self.__imprimir_resultados_finais(personagem)
         self.__espaco()
 
 

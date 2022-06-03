@@ -12,6 +12,7 @@ class Personagem():
         self._ultima_escolha = ''
         self._sequencia = 0
         self._duendes_capturados = 0
+        self._inimigos_destruidos = 0
 
     @property
     def nome(self):
@@ -40,6 +41,9 @@ class Personagem():
     @property
     def duendes_capturados(self):
         return self._duendes_capturados
+    @property
+    def inimigos_destruidos(self):
+        return self._inimigos_destruidos
 
     @forca.setter
     def forca(self, ponto):
@@ -62,6 +66,9 @@ class Personagem():
     @duendes_capturados.setter
     def duendes_capturados(self, duende_capturado):
         self._duendes_capturados = duende_capturado
+    @inimigos_destruidos.setter
+    def inimigos_destruidos(self, inimigo_destruido):
+        self._inimigos_destruidos = inimigo_destruido
 
 
     def __str__(self):
