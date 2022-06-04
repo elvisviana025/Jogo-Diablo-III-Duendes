@@ -36,7 +36,7 @@ class Sistema():
 
     def __imprimir_regras(self):
         print('→ Objetivo: ache e capture o maior número de duendes.\n'
-              '→ Você irá enfrentar até 21 inimigos na sua busca.'
+              '→ Você irá enfrentar até 21 inimigos na sua busca.\n'
               '→ Você ganha a batalha se tiver 5 ou mais pontos de ataque.\n'
               '→ Você não pode repetir uma ação em duas batalhas seguidas.\n'
               '→ Fraquezas e resistências do inimigo: + 1 ou - 1 ponto de ataque.')
@@ -151,9 +151,12 @@ class Sistema():
             return True
 
     def __imprimir_resultados_das_batalhas(self, personagem):
-        print(f'Sequência: {personagem.sequencia}/21 vitória(s) | Duendes capturados: {personagem.duendes_capturados}')
+        print(f'Sequência: {personagem.sequencia}/21 vitória(s)'
+              f' | Duendes capturados: {personagem.duendes_capturados}'
+              f' | Inimigos destruídos: {personagem.inimigos_destruidos}')
         self.__pausa()
         print(personagem)
+        personagem.imprimir_companheiros()
         self.__espaco()
 
     def __imprimir_resultados_finais(self, personagem):
@@ -161,7 +164,7 @@ class Sistema():
         self.__pausa()
         print(f'Sequência: {personagem.sequencia}/21 batalhas vencidas'
               f' | Duendes capturados: {personagem.duendes_capturados}'
-              f' | Inimigos destruídos: {personagem.inimigos_destruidos}' )
+              f' | Inimigos destruídos: {personagem.inimigos_destruidos}')
         self.__pausa()
 
     def __imprimir_texto_batalha(self, personagem, inimigo, resultado_final, caminho):

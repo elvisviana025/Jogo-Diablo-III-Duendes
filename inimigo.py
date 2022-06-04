@@ -7,6 +7,7 @@ class Inimigo():
         self._lista_de_nomes = lista_de_nomes
         self._fraqueza = fraqueza
         self._resistencia = resistencia
+        self._chefao = False
 
     def __str__(self):
         return f'♦ {self._lista_de_nomes.title()} ' \
@@ -33,6 +34,10 @@ class Inimigo():
     def resistencia(self):
         return self._resistencia
 
+    @property
+    def chefao(self):
+        return self._chefao
+
     def calcular_vantagem_desvantagem(self, acao_escolhida):
         ponto_modificador = 0
         if acao_escolhida == self.fraqueza:
@@ -48,17 +53,23 @@ class Inimigo():
     def agir_na_derrota(self, personagem, resultado_final, caminho):
         atributos = ['força', 'inteligência', 'agilidade', 'magia']
         atributo_sorteado = atributos[randint(0, (len(atributos) - 1))]
+        nome_amuleto = ''
+        liberto = ''
 
         if self.retornar_nome(caminho) == 'Duende':
             if atributo_sorteado == 'força':
                 personagem.forca += 1
+                nome_amuleto = 'Kanai'
             elif atributo_sorteado == 'inteligência':
                 personagem.inteligencia += 1
+                nome_amuleto = 'Cain'
             elif atributo_sorteado == 'agilidade':
                 personagem.agilidade += 1
+                nome_amuleto = 'Cydaea'
             elif atributo_sorteado == 'magia':
                 personagem.magia += 1
-            print(f'• O Duende deixou cair um "amuleto de {atributo_sorteado}": + 1 de {atributo_sorteado}.')
+                nome_amuleto = 'Adria'
+            print(f'• O Duende deixou cair um "amuleto de {nome_amuleto}": + 1 de {atributo_sorteado}.')
             sleep(1)
 
         elif self.retornar_nome(caminho) == 'Fantasma Ceifador':
@@ -77,6 +88,23 @@ class Inimigo():
                 print(f'• Ceifador jogou uma maldição: - 1 de {atributo_sorteado}.')
                 sleep(1)
 
+        elif self.chefao == True and resultado_final == "vitória_destruição":
+            if atributo_sorteado == 'força':
+                personagem.forca += 1
+                liberto = 'Lobo Enfeitiçado'
+            elif atributo_sorteado == 'inteligência':
+                personagem.inteligencia += 1
+                liberto = 'Aranha Estrategista'
+            elif atributo_sorteado == 'agilidade':
+                personagem.agilidade += 1
+                liberto = 'Morcego Encantado'
+            elif atributo_sorteado == 'magia':
+                personagem.magia += 1
+                liberto = 'Galinha Feiticeira'
+            print(f'• Você libertou um(a) {liberto} que irá te acompanhar: + 1 de {atributo_sorteado}.')
+            personagem.companheiros += liberto
+            sleep(1)
+
 
 class Inimigo_Comum(Inimigo):
     def __init__(self, nome, fraqueza, resistencia):
@@ -86,6 +114,7 @@ class Inimigo_Chefe(Inimigo):
     def __init__(self, nome, fraqueza, resistencia, resistencia2):
         super().__init__(nome, fraqueza, resistencia)
         self._resistencia2 = resistencia2
+        self._chefao = True
 
     def __str__(self):
         return f'♦♦ {self._lista_de_nomes.title()} ' \

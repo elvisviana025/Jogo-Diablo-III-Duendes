@@ -13,6 +13,7 @@ class Personagem():
         self._sequencia = 0
         self._duendes_capturados = 0
         self._inimigos_destruidos = 0
+        self._companheiros = ['Javaré']
 
     @property
     def nome(self):
@@ -44,6 +45,9 @@ class Personagem():
     @property
     def inimigos_destruidos(self):
         return self._inimigos_destruidos
+    @property
+    def companheiros(self):
+        return self._companheiros
 
     @forca.setter
     def forca(self, ponto):
@@ -69,6 +73,9 @@ class Personagem():
     @inimigos_destruidos.setter
     def inimigos_destruidos(self, inimigo_destruido):
         self._inimigos_destruidos = inimigo_destruido
+    @companheiros.setter
+    def companheiros(self, companheiro):
+        self._companheiros.append(companheiro)
 
 
     def __str__(self):
@@ -80,7 +87,7 @@ class Personagem():
 
     def imprimir_classe_formatada(self):
         print( f'{self._nome.title():10} '
-               f'| Vantagem: {self._vantagem.title():12} '
+               # f'| Vantagem: {self._vantagem.title():12} '
                f'| [1] Força: {self._forca} '
                f'| [2] Inteligência: {self._inteligencia} '
                f'| [3] Agilidade: {self._agilidade} '
@@ -104,3 +111,7 @@ class Personagem():
         dado = randint(1, 6)
         print(f'• Pontos de dado = {dado}')
         return dado
+
+    def imprimir_companheiros(self):
+        if len(self.companheiros) > 0:
+            print(f'Seus companheiros: {self.companheiros}.')
