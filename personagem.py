@@ -1,4 +1,5 @@
 from random import randint
+from time import sleep
 
 
 class Personagem():
@@ -13,7 +14,7 @@ class Personagem():
         self._sequencia = 0
         self._duendes_capturados = 0
         self._inimigos_destruidos = 0
-        self._companheiros = ['Javaré']
+        self._companheiros = []
 
     @property
     def nome(self):
@@ -73,9 +74,6 @@ class Personagem():
     @inimigos_destruidos.setter
     def inimigos_destruidos(self, inimigo_destruido):
         self._inimigos_destruidos = inimigo_destruido
-    @companheiros.setter
-    def companheiros(self, companheiro):
-        self._companheiros.append(companheiro)
 
 
     def __str__(self):
@@ -114,4 +112,9 @@ class Personagem():
 
     def imprimir_companheiros(self):
         if len(self.companheiros) > 0:
-            print(f'Seus companheiros: {self.companheiros}.')
+            sleep(1)
+            print(f'♣ Seus companheiros: {self.companheiros}.')
+
+    def imprimir_estado_do_personagem(self):
+        print(self)
+        self.imprimir_companheiros()

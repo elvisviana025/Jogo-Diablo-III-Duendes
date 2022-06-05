@@ -155,9 +155,7 @@ class Sistema():
               f' | Duendes capturados: {personagem.duendes_capturados}'
               f' | Inimigos destruídos: {personagem.inimigos_destruidos}')
         self.__pausa()
-        print(personagem)
-        personagem.imprimir_companheiros()
-        self.__espaco()
+
 
     def __imprimir_resultados_finais(self, personagem):
         print('Fim de jogo!')
@@ -218,6 +216,10 @@ class Sistema():
         self.__pausa()
         personagem = self.__escolher_classe()  # ESCOLHA PERSONAGEM
         while True:
+            if personagem.sequencia > 0:
+                self.__imprimir_resultados_das_batalhas(personagem)
+                personagem.imprimir_estado_do_personagem()
+                self.__espaco()
             self.__pausa()
             inimigo = self.__sortear_inimigo(personagem, caminho)  # SORTEIO INIMIGO
             self.__pausa()
@@ -255,7 +257,7 @@ class Sistema():
                 print('')
                 if continuar == False:
                     break
-                self.__imprimir_resultados_das_batalhas(personagem)
+
 
             ## DESFECHO PERDEU ---------------------------------------
             else:

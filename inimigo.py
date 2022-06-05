@@ -91,18 +91,18 @@ class Inimigo():
         elif self.chefao == True and resultado_final == "vitória_destruição":
             if atributo_sorteado == 'força':
                 personagem.forca += 1
-                liberto = 'Lobo Enfeitiçado'
+                liberto = 'Javali Furioso'
             elif atributo_sorteado == 'inteligência':
                 personagem.inteligencia += 1
                 liberto = 'Aranha Estrategista'
             elif atributo_sorteado == 'agilidade':
                 personagem.agilidade += 1
-                liberto = 'Morcego Encantado'
+                liberto = 'Morcego Veloz'
             elif atributo_sorteado == 'magia':
                 personagem.magia += 1
                 liberto = 'Galinha Feiticeira'
             print(f'• Você libertou um(a) {liberto} que irá te acompanhar: + 1 de {atributo_sorteado}.')
-            personagem.companheiros += liberto
+            personagem.companheiros.append(liberto)
             sleep(1)
 
 
