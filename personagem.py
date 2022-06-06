@@ -113,7 +113,14 @@ class Personagem():
     def imprimir_companheiros(self):
         if len(self.companheiros) > 0:
             sleep(1)
-            print(f'♣ Seus companheiros: {self.companheiros}.')
+            print(f'♣ Seus companheiros: ', end='')
+            for companheiro in self.companheiros:
+                if self.companheiros.index(companheiro) == (len(self.companheiros) - 1):
+                    print(f'{companheiro}', end='')
+                else:
+                    print(f'{companheiro}, ', end='')
+            print('.')
+
 
     def imprimir_estado_do_personagem(self):
         print(self)
