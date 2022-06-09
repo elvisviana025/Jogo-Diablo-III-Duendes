@@ -3,7 +3,7 @@ from time import sleep
 
 
 class Personagem():
-    def __init__(self, nome, vantagem, forca, inteligencia, agilidade, magia):
+    def __init__(self, nome, vantagem, forca, inteligencia, agilidade, magia, companheiro):
         self._nome = nome
         self._vantagem = vantagem
         self._forca = forca
@@ -14,7 +14,7 @@ class Personagem():
         self._sequencia = 0
         self._duendes_capturados = 0
         self._inimigos_destruidos = 0
-        self._companheiros = []
+        self._companheiros = [companheiro]
 
     @property
     def nome(self):
@@ -121,6 +121,27 @@ class Personagem():
                     print(f'{companheiro}, ', end='')
             print('.')
 
+    def companheiro_sacrificar(self, resultado_final):
+        if resultado_final == 'derrota' and len(self.companheiros) > 0:
+            # sacrificar companheiro
+            companheiro = self.companheiros[0]
+            print(f'• Seu companheiro(a) {companheiro} distraiu o inimigo para você continuar.')
+            sleep(1)
+            self.companheiros.pop(0)
+
+            # remover vantagem do companheiro
+            if companheiro == 'Javali Furioso':
+                self.forca -= 1
+            elif companheiro == 'Aranha Estrategista':
+                self.inteligencia -= 1
+            elif companheiro == 'Morcego Veloz':
+                self.agilidade -= 1
+            elif companheiro == 'Galinha Feiticeira':
+                self.magia -= 1
+
+            return 'vitória'
+        else:
+            return resultado_final
 
     def imprimir_estado_do_personagem(self):
         print(self)

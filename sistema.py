@@ -76,12 +76,18 @@ class Sistema():
         elif escolha == 4:
             personagem = copy.deepcopy(lista_classes.objeto_lista_de_classe.__getitem__(3))
         print(f'Você escolheu a classe {personagem.nome.title()}.')
-        print(personagem)
-        self.__espaco()
         return personagem
 
     def __sortear_inimigo(self, personagem, caminho):
-        if personagem.sequencia % 5 == 0 and personagem.sequencia != 0:
+        if personagem.sequencia == 1:
+            index_duende = 4
+            inimigo_comum_sorteado = lista_inimigos.objeto_lista_de_inimigos_comuns[index_duende]
+            print(f'O inimigo é {inimigo_comum_sorteado.retornar_nome(caminho)}.')
+            print(inimigo_comum_sorteado.retornar_informacoes(caminho))
+            self.__espaco()
+            return inimigo_comum_sorteado
+
+        elif personagem.sequencia % 5 == 0 and personagem.sequencia != 0:
             inimigo_chefe_sorteado = lista_inimigos.objeto_lista_de_inimigos_chefes.sortear_objeto()
             print(f'Chefão! O inimigo é {inimigo_chefe_sorteado.retornar_nome(caminho)}.')
             print(inimigo_chefe_sorteado.retornar_informacoes(caminho))
@@ -181,7 +187,7 @@ class Sistema():
             elif numero_sorteado == 2:
                 print(f'• O inimigo {inimigo.retornar_nome(caminho)} escapou para as sombras com o uso de {inimigo.resistencia}.')
             elif numero_sorteado == 3:
-                print(f'• O inimigo {inimigo.retornar_nome(caminho)} desviou do seu ataque {personagem.ultima_escolha}.')
+                print(f'• O inimigo {inimigo.retornar_nome(caminho)} desviou do seu ataque de {personagem.ultima_escolha}.')
         elif resultado_final == "vitória":
             if inimigo.retornar_nome(caminho) == "Duende":
                 print(f'• Você capturou o Duende com um ataque de {personagem.ultima_escolha}.')
@@ -215,6 +221,8 @@ class Sistema():
         caminho = self.__escolher_caminho() # ESCOLHA O CAMINHO A PERCORRER
         self.__pausa()
         personagem = self.__escolher_classe()  # ESCOLHA PERSONAGEM
+        personagem.imprimir_estado_do_personagem()
+        self.__espaco()
         while True:
             if personagem.sequencia > 0:
                 self.__imprimir_resultados_das_batalhas(personagem)
@@ -226,19 +234,20 @@ class Sistema():
 
             ## BATALHA ---------------------------------------
             acao_escolhida = personagem.escolher_acao()  # ESCOLHER AÇÃO
-            acao_escolhida_validada = self.__validar_acao(acao_escolhida, personagem)  # VALIDAR AÇÃO
+            acao_escolhida = self.__validar_acao(acao_escolhida, personagem)  # VALIDAR AÇÃO
             self.__pausa()
-            ponto_acao = self.__calcular_ponto_de_acao(personagem, acao_escolhida_validada)  # CALCULAR PONTO DE AÇÃO
+            ponto_acao = self.__calcular_ponto_de_acao(personagem, acao_escolhida)  # CALCULAR PONTO DE AÇÃO
             self.__pausa()
             ponto_dado = personagem.jogar_dado()  # JOGAR DADO
             self.__pausa()
-            ponto_modificador = inimigo.calcular_vantagem_desvantagem(acao_escolhida_validada)  # CALCULAR VANTAGENS E DESVANTAGENS
+            ponto_modificador = inimigo.calcular_vantagem_desvantagem(acao_escolhida)  # CALCULAR VANTAGENS E DESVANTAGENS
             pontuacao_final = self.__calcular_pontuacao_final(ponto_acao, ponto_dado, ponto_modificador)  # CALCULAR PONTUAÇÃO FINAL
             self.__pausa()
 
 
             ## DESFECHO ---------------------------------------
             resultado_final = self.__calcular_resultado_final(pontuacao_final)
+            resultado_final = personagem.companheiro_sacrificar(resultado_final)
 
             ## DESFECHO GANHOU ---------------------------------------
             if resultado_final == 'vitória' or resultado_final == 'vitória_destruição':
@@ -252,7 +261,7 @@ class Sistema():
                 if terminar_aventura == True:
                     break
 
-                continuar = self.__continuar_batalhas() # OPÇÃO DE CONTINAR BATALHAS OU FINALIZAR1
+                continuar = self.__continuar_batalhas() # OPÇÃO DE CONTINAR BATALHAS OU FINALIZAR
                 self.__pausa()
                 print('')
                 if continuar == False:

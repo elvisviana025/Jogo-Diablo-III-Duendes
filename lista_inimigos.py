@@ -5,10 +5,10 @@ from lista_de_objetos import Lista_de_objetos
 voador_agil = Inimigo_Comum(["revoada de morcegos", "gárgula enfeitiçada", "revoada de vespas", "diabretes alados"], "agilidade", 'magia')
 rastejante_agil = Inimigo_Comum(["serpente enfeitiçada", "ratazana enfeitiçada", "verme da areia", "aranha enfeitiçada"], "agilidade", 'magia')
 
-guerreiro = Inimigo_Comum(["diabrete guerreiro", "guarda possuído", "diabrete guerreiro", "troll guerreiro"], "inteligência", 'força')
-orc = Inimigo_Comum(["orc da floresta", "orc pilhador", "orc das dunas", "orc das cavernas"], "inteligência", 'força')
+guerreiro = Inimigo_Comum(["diabrete da floresta", "guarda possuído", "diabrete das dunas", "troll guerreiro"], "inteligência", 'força')
+orc = Inimigo_Comum(["orc do tronco", "orc pilhador", "orc da areia", "orc das cavernas"], "inteligência", 'força')
 
-trapaceiro = Inimigo_Comum(["troll da ponte", "diabrete sagaz", "múmia renascida", "diabrete sagaz"], "força", 'inteligência')
+trapaceiro = Inimigo_Comum(["troll da ponte", "diabrete dos esgotos", "múmia renascida", "diabrete dos subterrâneos"], "força", 'inteligência')
 duende = Inimigo_Comum(["duende", "duende", "duende", "duende"], " - ", 'inteligência')
 
 fantasma = Inimigo_Comum(["fantama do pântano", "fantasma do cavaleiro", "fantasma ghoul", "fantasma do abismo"], "magia", 'agilidade')
