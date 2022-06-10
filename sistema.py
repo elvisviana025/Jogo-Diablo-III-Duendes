@@ -162,7 +162,6 @@ class Sistema():
               f' | Inimigos destruídos: {personagem.inimigos_destruidos}')
         self.__pausa()
 
-
     def __imprimir_resultados_finais(self, personagem):
         print('Fim de jogo!')
         self.__pausa()
@@ -176,38 +175,38 @@ class Sistema():
 
         if resultado_final ==  "derrota_destruição":
             if numero_sorteado == 1:
-                print(f'• Você foi derrotado após um ataque trapaceiro de {inimigo.resistencia} do inimigo {inimigo.retornar_nome(caminho)}.')
+                print(f'• Derrotado após um ataque trapaceiro de {inimigo.resistencia} do inimigo {inimigo.retornar_nome(caminho)}.')
             elif numero_sorteado == 2:
-                print(f'• Você foi derrotado após um rápido ataque de {inimigo.resistencia} do inimigo {inimigo.retornar_nome(caminho)}.')
+                print(f'• Dderrotado após um rápido ataque de {inimigo.resistencia} do inimigo {inimigo.retornar_nome(caminho)}.')
             elif numero_sorteado == 3:
-                print(f'• Você foi emboscado pelo inimigo {inimigo.retornar_nome(caminho)} com um ataque de {inimigo.resistencia}.')
+                print(f'• Emboscado pelo inimigo {inimigo.retornar_nome(caminho)} com um ataque de {inimigo.resistencia}.')
         elif resultado_final ==  "derrota":
             if numero_sorteado == 1:
-                print(f'• O inimigo {inimigo.retornar_nome(caminho)} resistiu ao seu ataque com o uso de {inimigo.resistencia}.')
+                print(f'• Inimigo {inimigo.retornar_nome(caminho)} resistiu ao seu ataque com o uso de {inimigo.resistencia}.')
             elif numero_sorteado == 2:
-                print(f'• O inimigo {inimigo.retornar_nome(caminho)} escapou para as sombras com o uso de {inimigo.resistencia}.')
+                print(f'• Inimigo {inimigo.retornar_nome(caminho)} contra-atacou o uso de {inimigo.resistencia}.')
             elif numero_sorteado == 3:
-                print(f'• O inimigo {inimigo.retornar_nome(caminho)} desviou do seu ataque de {personagem.ultima_escolha}.')
+                print(f'• Inimigo {inimigo.retornar_nome(caminho)} desviou do seu ataque de {personagem.ultima_escolha}.')
         elif resultado_final == "vitória":
             if inimigo.retornar_nome(caminho) == "Duende":
                 print(f'• Você capturou o Duende com um ataque de {personagem.ultima_escolha}.')
             else:
                 if numero_sorteado == 1:
-                    print(f'• O inimigo {inimigo.retornar_nome(caminho)} fugiu após seu ataque de {personagem.ultima_escolha}.')
+                    print(f'• Inimigo {inimigo.retornar_nome(caminho)} fugiu após seu ataque de {personagem.ultima_escolha}.')
                 elif numero_sorteado == 2:
-                    print(f'• O inimigo {inimigo.retornar_nome(caminho)} ficou imobilizado após seu ataque de {personagem.ultima_escolha}.')
+                    print(f'• Inimigo {inimigo.retornar_nome(caminho)} ficou imobilizado após seu ataque de {personagem.ultima_escolha}.')
                 elif numero_sorteado == 3:
-                    print(f'• O inimigo {inimigo.retornar_nome(caminho)} ficou atordoado após seu ataque de {personagem.ultima_escolha}.')
+                    print(f'• Inimigo {inimigo.retornar_nome(caminho)} ficou atordoado após seu ataque de {personagem.ultima_escolha}.')
         elif resultado_final ==  "vitória_destruição":
             if inimigo.retornar_nome(caminho) == "Duende":
                 print(f'• Você capturou o Duende com um ataque de {personagem.ultima_escolha}.')
             else:
                 if numero_sorteado == 1:
-                    print(f'• O inimigo {inimigo.retornar_nome(caminho)} foi destruído após seu rápido ataque de {personagem.ultima_escolha}.')
+                    print(f'• Inimigo {inimigo.retornar_nome(caminho)} destruído após seu rápido ataque de {personagem.ultima_escolha}.')
                 elif numero_sorteado == 2:
-                    print(f'• O inimigo {inimigo.retornar_nome(caminho)} foi destruído após seu golpe crítico de {personagem.ultima_escolha}.')
+                    print(f'• Inimigo {inimigo.retornar_nome(caminho)} destruído após seu golpe crítico de {personagem.ultima_escolha}.')
                 elif numero_sorteado == 3:
-                    print(f'• O inimigo {inimigo.retornar_nome(caminho)} foi destruído após seu ataque surpresa de {personagem.ultima_escolha}.')
+                    print(f'• Inimigo {inimigo.retornar_nome(caminho)} destruído após seu ataque surpresa de {personagem.ultima_escolha}.')
 
     def __terminar_aventura(self, personagem, caminho):
         cenarios = ['na Floresta', 'na Cidadela', 'no Deserto', 'no Caminho Montanhoso']
@@ -224,7 +223,7 @@ class Sistema():
         personagem.imprimir_estado_do_personagem()
         self.__espaco()
         while True:
-            if personagem.sequencia > 0:
+            if personagem.sequencia > 0: # EXIBE INFORMAÇÕES DO PERSONAGEM
                 self.__imprimir_resultados_das_batalhas(personagem)
                 personagem.imprimir_estado_do_personagem()
                 self.__espaco()

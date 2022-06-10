@@ -7,7 +7,7 @@ menor = 1
 
 guerreiro = Personagem('guerreiro', 'força', maior, menor, medio, menor, 'Javaré')
 feiticeiro = Personagem('feiticeiro', 'magia', medio, medio, menor, maior, 'Gatoruja')
-cacador = Personagem('caçador', 'agilidade', medio, medio, maior, menor, 'Cachorráguia')
+cacador = Personagem('caçador', 'agilidade', medio, medio, maior, menor, 'Cão de caça')
 monge = Personagem('monge', 'inteligência', menor, maior, medio, medio, 'Dracobra')
 
 lista_de_classes = [guerreiro, feiticeiro, cacador, monge]
