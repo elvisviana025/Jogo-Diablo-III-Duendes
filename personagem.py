@@ -122,7 +122,7 @@ class Personagem():
             print('.')
 
     def companheiro_sacrificar(self, resultado_final):
-        if resultado_final == 'derrota' and len(self.companheiros) > 0:
+        if (resultado_final == 'derrota' or resultado_final == 'derrota_destruição') and len(self.companheiros) > 0:
             # sacrificar companheiro
             companheiro = self.companheiros[0]
             print(f'• Seu companheiro(a) {companheiro} distraiu o inimigo para você continuar.')

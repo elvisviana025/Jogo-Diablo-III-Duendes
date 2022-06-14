@@ -23,5 +23,12 @@ forte_agil = Inimigo_Chefe(["lobo gigante", "anjo renegado", "escorpião gigante
 forte_inteligente = Inimigo_Chefe(["árvore das trevas", "cavaleiro corrompido", "gênio corrompido", "dragão dourado"], " - ", 'inteligência', "força")
 magia_agil = Inimigo_Chefe(["bruxa da vassoura", "bruxo das alcovas", "verme da areia supremo", "rainha das aranhas"], " - ", 'agilidade', "magia")
 
-listaChefes = [magia_inteligencia, forte_agil, forte_inteligente, magia_agil]
-objeto_lista_de_inimigos_chefes = Lista_de_objetos('Lista de Inimigos Chefes', listaChefes)
+lista_chefes = [magia_inteligencia, forte_agil, forte_inteligente, magia_agil]
+objeto_lista_de_inimigos_chefes = Lista_de_objetos('Lista de Inimigos Chefes', lista_chefes)
+
+# INIMIGOS CHEFES DA DESTRUIÇÃO
+magia_agil_destruicao = Inimigo_Chefe(["espírito da destruição", "espírito da destruição", "espírito da destruição", "espírito da destruição"], " - ", 'agilidade', "magia")
+forte_agil_destruicao = Inimigo_Chefe(["guerreiro da destruição", "guerreiro da destruição", "guerreiro da destruição", "guerreiro da destruição"], " - ", 'força', "agilidade")
+
+lista_chefes_destruicao = [magia_agil_destruicao, forte_agil_destruicao]
+objeto_lista_de_inimigos_chefes_destruicao = Lista_de_objetos('Lista de Inimigos Chefes Destruição', lista_chefes_destruicao)

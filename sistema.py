@@ -87,6 +87,14 @@ class Sistema():
             self.__espaco()
             return inimigo_comum_sorteado
 
+        # RASCUNHO: CASO DESTRUA 3, CHEFÃO EXTRA
+        # elif personagem.inimigos_destruidos % 3 == 0 and personagem.inimigos_destruidos != 0:
+        #     inimigo_chefe_destruicao_sorteado = lista_inimigos.objeto_lista_de_inimigos_chefes_destruicao.sortear_objeto()
+        #     print(f'Muitas destruições... você invocou o {inimigo_chefe_destruicao_sorteado.retornar_nome(caminho)}!')
+        #     print(inimigo_chefe_destruicao_sorteado.retornar_informacoes(caminho))
+        #     self.__espaco()
+        #     return inimigo_chefe_destruicao_sorteado
+
         elif personagem.sequencia % 5 == 0 and personagem.sequencia != 0:
             inimigo_chefe_sorteado = lista_inimigos.objeto_lista_de_inimigos_chefes.sortear_objeto()
             print(f'Chefão! O inimigo é {inimigo_chefe_sorteado.retornar_nome(caminho)}.')
